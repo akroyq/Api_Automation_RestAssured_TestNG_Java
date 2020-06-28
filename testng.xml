@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" preserve-order="true">
+	<test name="FullPack">
+		<classes>
+		    <class name="com.typicode.jsonplaceholder.GetRequests" />
+			<class name="com.typicode.jsonplaceholder.PostRequests" />
+		</classes>
+	</test>
+</suite>
