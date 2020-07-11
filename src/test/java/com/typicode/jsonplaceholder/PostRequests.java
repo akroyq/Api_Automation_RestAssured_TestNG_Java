@@ -15,8 +15,8 @@ import org.testng.annotations.Test;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-import utils.FileReader;
-import utils.SubSequentCalls;
+import com.typicode.utilities.FileReader;
+import com.typicode.utilities.SubSequentCalls;
 
 public class PostRequests {
 	
@@ -37,7 +37,7 @@ public class PostRequests {
 	@BeforeMethod
 	public void preCondition() throws IOException {
 		FileInputStream fis = new FileInputStream("./src/main/resources/config.properties");
-		headerProperties = utils.FileReader.readProperties("./src/test/resources/requests/header_jsonplaceholder.properties");
+		headerProperties = com.typicode.utilities.FileReader.readProperties("./src/test/resources/requests/header_jsonplaceholder.properties");
 		requestPayload = new FileReader().readFile("requests/postsrequestpayload.json");
 		properties = new Properties();
 		properties.load(fis);

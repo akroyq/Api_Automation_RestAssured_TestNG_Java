@@ -1,4 +1,4 @@
-package utils;
+package com.typicode.utilities;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
-import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpStatus;
 import org.hamcrest.core.IsNull;
 import org.testng.Assert;
@@ -15,9 +13,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import com.typicode.utilities.SubSequentCalls;
+
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
-import utils.SubSequentCalls;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
@@ -56,6 +55,7 @@ public class GetRequests {
 		postsPath = properties.getProperty("PostPath");
 		commentsPath = properties.getProperty("CommentsPath");
 		token = subSequentCalls.getToken();
+
 	}
 
 	/**

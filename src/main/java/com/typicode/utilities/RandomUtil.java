@@ -1,4 +1,4 @@
-package utils;
+package com.typicode.utilities;
 
 import java.util.concurrent.ThreadLocalRandom;
 import org.apache.commons.lang3.RandomStringUtils;
