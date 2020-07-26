@@ -6,6 +6,7 @@ Developed a sample framework which support to develop automation test scripts fo
 1. Java
 2. Rest Assured
 3. TestNG
+4. Extentreports
 5. Maven
 
 
