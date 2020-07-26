@@ -1,6 +1,7 @@
 package com.typicode.jsonplaceholder;
 
 import static io.restassured.RestAssured.given;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -12,9 +13,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import com.typicode.utilities.SubSequentCalls;
-
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 
@@ -26,8 +25,11 @@ import static org.hamcrest.Matchers.hasItems;
  */
 
 public class GetRequests {
+
+	private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(GetRequests.class);
+	
 	SubSequentCalls subSequentCalls = new SubSequentCalls();
-	Map<String,String> headerProperties;
+	Map<String, String> headerProperties;
 	String baseUri;
 	String userPath;
 	String postsPath;
@@ -35,27 +37,31 @@ public class GetRequests {
 	Properties properties;
 	int samanthaId;
 	String token;
-	
 	private final String SAMANTHA_POSTS_TITLE = "ea molestias quasi exercitationem repellat qui ipsa sit aut";
-
+	 
 	/**
 	 * BeforeMethod is used to fetched the baseUri, basePath from Properties
 	 * 
 	 */
+		
 	@BeforeMethod
 	public void preCondition() throws IOException {
-		FileInputStream fis = new FileInputStream("./src/main/resources/config.properties");
-		properties = new Properties();
-		properties.load(fis);
-		baseUri = System.getProperty("HOST");
-		if (baseUri == null) {
-			baseUri = properties.getProperty("HOST");
+		try {
+			FileInputStream fis = new FileInputStream("./src/main/resources/config.properties");
+			properties = new Properties();
+			properties.load(fis);
+			baseUri = System.getProperty("HOST");
+			if (baseUri == null) {
+				baseUri = properties.getProperty("HOST");
+			}
+			userPath = properties.getProperty("UserPath");
+			postsPath = properties.getProperty("PostPath");
+			commentsPath = properties.getProperty("CommentsPath");
+			token = subSequentCalls.getToken();		
+		} catch (Exception e) {
+			logger.error("Exception thrown at pre-condition:", e);
+			Assert.fail("Exception thrown at pre-condition:" + e.getMessage(), e);
 		}
-		userPath = properties.getProperty("UserPath");
-		postsPath = properties.getProperty("PostPath");
-		commentsPath = properties.getProperty("CommentsPath");
-		token = subSequentCalls.getToken();
-
 	}
 
 	/**
@@ -70,7 +76,7 @@ public class GetRequests {
 					.statusCode(HttpStatus.SC_OK).log().all().and()
 					.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schemas/schemaFile.jsd"));
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.info("Exception: ", e);
 			Assert.fail("Exception thrown Test case failed :" + e.getMessage(), e);
 		}
 	}
@@ -80,9 +86,8 @@ public class GetRequests {
 		try {
 			given().baseUri(baseUri).basePath(userPath).log().all().get().then().assertThat()
 					.statusCode(HttpStatus.SC_OK).log().all().and().body("id", IsNull.notNullValue());
-
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Exception: ", e);
 			Assert.fail("Exception thrown Test case failed :" + e.getMessage(), e);
 		}
 	}
@@ -108,14 +113,14 @@ public class GetRequests {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Exception: ", e);
 			Assert.fail("Exception thrown Test case failed :" + e.getMessage(), e);
 		}
 	}
 
 	/**
-	 * Use the details fetched to make a search for the posts written by the user
-	 * Samantha.
+	 * Use the details fetched to make a search for the posts written by the
+	 * user Samantha.
 	 * 
 	 */
 	@Test(dependsOnMethods = { "verifyUserNameSamantha" })
@@ -125,14 +130,14 @@ public class GetRequests {
 					.statusCode(HttpStatus.SC_OK).log().all().and()
 					.body("[" + Integer.toString(samanthaId - 1) + "].title", equalTo(SAMANTHA_POSTS_TITLE));
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Exception: ", e);
 			Assert.fail("Exception thrown Test case failed :" + e.getMessage(), e);
 		}
 	}
 
 	/**
-	 * This test is for each post, fetch the comments and validate if the emails in
-	 * the comment section are in the proper format.
+	 * This test is for each post, fetch the comments and validate if the emails
+	 * in the comment section are in the proper format.
 	 * 
 	 */
 
@@ -158,7 +163,7 @@ public class GetRequests {
 				Assert.fail("Email list is empty. Please check.");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Exception: ", e);
 			Assert.fail("Exception thrown Test case failed :" + e.getMessage(), e);
 		}
 	}

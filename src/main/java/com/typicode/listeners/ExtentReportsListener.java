@@ -16,9 +16,9 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
-public class ExtentReportsListeners implements ITestListener, ISuiteListener {
-	static Date d = new Date();
-	static String fileName = "Extent_" + d.toString().replace(":", "_").replace(" ", "_") + ".html";
+public class ExtentReportsListener implements ITestListener, ISuiteListener {
+	static Date date = new Date();
+	static String fileName = "ExtentReport_" + date.toString().replace(":", "_").replace(" ", "_") + ".html";
 	private static ExtentReports extent = ExtentReportsConfig
 			.createInstance(System.getProperty("user.dir") + "\\reports\\" + fileName);
 

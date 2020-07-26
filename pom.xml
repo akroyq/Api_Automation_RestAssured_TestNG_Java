@@ -15,6 +15,7 @@
 		<java.hamcrest.version>2.0.0.0</java.hamcrest.version>
 		<commons.io.version>1.4</commons.io.version>
 		<extentreports.version>4.0.9</extentreports.version>
+		<log4j.version>1.2.17</log4j.version>
 		<maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
 	</properties>
 
@@ -67,13 +68,13 @@
 			<version>${java.hamcrest.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons.io.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
@@ -85,6 +86,12 @@
 			<artifactId>json-path</artifactId>
 			<version>2.0.0</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
 	</dependencies>
 </project>
