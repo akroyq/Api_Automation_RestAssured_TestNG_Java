@@ -1,4 +1,4 @@
-package com.typicode.jsonplaceholder;
+package com.typicode.jsonplaceholder.tests;
 
 import static io.restassured.RestAssured.given;
 
@@ -137,7 +137,7 @@ public class GetRequests {
 
 	/**
 	 * This test is for each post, fetch the comments and validate if the emails
-	 * in the comment section are in the proper format.
+	 * in the commentï¿½section are in the proper format.
 	 * 
 	 */
 

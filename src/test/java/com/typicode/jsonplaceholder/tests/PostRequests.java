@@ -1,4 +1,4 @@
-package com.typicode.jsonplaceholder;
+package com.typicode.jsonplaceholder.tests;
 
 import static io.restassured.RestAssured.given;
 

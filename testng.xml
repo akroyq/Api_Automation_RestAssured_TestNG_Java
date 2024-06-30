@@ -2,14 +2,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" preserve-order="true">
 	<listeners>
-		<listener class-name="com.typicode.listeners.LogsTrackerListener" />
-		<listener class-name="com.typicode.listeners.ExtentReportsListener" />
+		<listener class-name="com.typicode.jsonplaceholder.listeners.LogsTrackerListener" />
+		<listener class-name="com.typicode.jsonplaceholder.listeners.ExtentReportsListener" />
 	</listeners>
 
 	<test name="FullPack">
 		<classes>
-			<class name="com.typicode.jsonplaceholder.GetRequests" />
-			<class name="com.typicode.jsonplaceholder.PostRequests" />
+			<class name="com.typicode.jsonplaceholder.tests.GetRequests" />
+			<class name="com.typicode.jsonplaceholder.tests.PostRequests" />
 		</classes>
 	</test>
 </suite>

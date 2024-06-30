@@ -1,8 +1,9 @@
-package com.typicode.listeners;
+package com.typicode.jsonplaceholder.listeners;
 
 import java.util.Arrays;
 import java.util.Date;
 
+import com.typicode.utilities.ExtentReportsConfig;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
